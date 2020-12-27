@@ -2,7 +2,7 @@
 
 This bot will Scan between 2 - 4 crypto exchanges using CCXT, to determine wether there is 
 any possible arbitrage trades between 2 exchanges. 
-The print the profit forecast for the arbitrage trades.
+Then print the profit forecast for the arbitrage trades.
 
 This bot does not place real trades, no API-KEY is needed.
 
