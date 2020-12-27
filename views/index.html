@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Crypto Arbitrage Scanner</title>
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/vue.js"></script>
+    <link rel="stylesheet" href="./css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./css/extra.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+    <link rel="stylesheet" href="./css/style.css"/>
+</head>
+<body>
+<div class="container">
+</div>
+<div class="container" style="margin: 0px auto;">
+    <div id="mainVue">
+        <h1>Crypto Arbitrage Scanner</h1>
+        <h2>Arbitrage Opportunities Bot</h2>
+        <button id="reloadPage" v-on:click="reloadPage" class="d-none btn btn-default col-2 offset-3 row">Restart</button>
+        <button id="stopProcess" v-on:click="stopEverything" class="d-none btn btn-default col-2 offset-2 row">Stop the process</button>
+
+        <h6 id="subtitleSelect">Please select 2-5 exchanges to compare</h6>
+        <div id="exchange-selector-container">
+            <div id="exchange-selector" class="row">
+                <button class="form-group btn btn-default col-2 offset-5" v-on:click="startProcess">Start the Process</button>
+                <table class="centerTable">
+										<tr>
+												<td><input type=checkbox value="acx" id="acx" class="checkbox"></td>
+												<td><label for="acx"><img src="./img/acx.jpg" width="85" height="25" class="exchange_logo" alt="ACX"></label></td>
+												<td class="exchange"><label for="acx">ACX</label></td>
+												<td><input type=checkbox value="btcchina" id="btcchina" class="checkbox"></td>
+												<td><label for="btcchina"><img src="./img/btcchina.jpg" width="85" height="25" class="exchange_logo" alt="BTCChina"></label></td>
+												<td class="exchange"><label for="btcchina">BTCChina</label></td>
+												<td><input type=checkbox value="fybsg" id="fybsg" class="checkbox"></td>
+												<td><label for="fybsg"><img src="./img/fybsg.jpg" width="85" height="25" class="exchange_logo" alt="FYB-SG"></label></td>
+												<td class="exchange"><label for="fybsg">FYB-SG</label></td>
+												<td><input type=checkbox value="mixcoins" id="mixcoins" class="checkbox"></td>
+												<td><label for="mixcoins"><img src="./img/mixcoins.jpg" width="85" height="25" class="exchange_logo" alt="MixCoins"></label></td>
+												<td class="exchange"><label for="mixcoins">MixCoins</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="allcoin" id="allcoin" class="checkbox"></td>
+												<td><label for="allcoin"><img src="./img/allcoin.jpg" width="85" height="25" class="exchange_logo" alt="Allcoin"></label></td>
+												<td class="exchange"><label for="allcoin">Allcoin</label></td>
+												<td><input type=checkbox value="btcexchange" id="btcexchange" class="checkbox"></td>
+												<td><label for="btcexchange"><img src="./img/btcexchange.jpg" width="85" height="25" class="exchange_logo" alt="BTCExchange"></label></td>
+												<td class="exchange"><label for="btcexchange">BTCExchange</label></td>
+												<td><input type=checkbox value="gatecoin" id="gatecoin" class="checkbox"></td>
+												<td><label for="gatecoin"><img src="./img/gatecoin.jpg" width="85" height="25" class="exchange_logo" alt="Gatecoin"></label></td>
+												<td class="exchange"><label for="gatecoin">Gatecoin</label></td>
+												<td><input type=checkbox value="nova" id="nova" class="checkbox"></td>
+												<td><label for="nova"><img src="./img/nova.jpg" width="85" height="25" class="exchange_logo" alt="Novaexchange"></label></td>
+												<td class="exchange"><label for="nova">Novaexchange</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="anxpro" id="anxpro" class="checkbox"></td>
+												<td><label for="anxpro"><img src="./img/anxpro.jpg" width="85" height="25" class="exchange_logo" alt="ANXPro"></label></td>
+												<td class="exchange"><label for="anxpro">ANXPro</label></td>
+												<td><input type=checkbox value="btcmarkets" id="btcmarkets" class="checkbox"></td>
+												<td><label for="btcmarkets"><img src="./img/btcmarkets.jpg" width="85" height="25" class="exchange_logo" alt="BTC Markets"></label></td>
+												<td class="exchange"><label for="btcmarkets">BTC Markets</label></td>
+												<td><input type=checkbox value="gateio" id="gateio" class="checkbox"></td>
+												<td><label for="gateio"><img src="./img/gateio.jpg" width="85" height="25" class="exchange_logo" alt="Gate.io"></label></td>
+												<td class="exchange"><label for="gateio">Gate.io</label></td>
+												<td><input type=checkbox value="okcoincny" id="okcoincny" class="checkbox"></td>
+												<td><label for="okcoincny"><img src="./img/okcoincny.jpg" width="85" height="25" class="exchange_logo" alt="OKCoin CNY"></label></td>
+												<td class="exchange"><label for="okcoincny">OKCoin CNY</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="binance" id="binance" class="checkbox"></td>
+												<td><label for="binance"><img src="./img/binance.jpg" width="85" height="25" class="exchange_logo" alt="Binance"></label></td>
+												<td class="exchange"><label for="binance">Binance</label></td>
+												<td><input type=checkbox value="btctradeua" id="btctradeua" class="checkbox"></td>
+												<td><label for="btctradeua"><img src="./img/btctradeua.jpg" width="85" height="25" class="exchange_logo" alt="BTC Trade UA"></label></td>
+												<td class="exchange"><label for="btctradeua">BTC Trade UA</label></td>
+												<td><input type=checkbox value="gdax" id="gdax" class="checkbox"></td>
+												<td><label for="gdax"><img src="./img/gdax.jpg" width="85" height="25" class="exchange_logo" alt="GDAX"></label></td>
+												<td class="exchange"><label for="gdax">GDAX</label></td>
+												<td><input type=checkbox value="okcoinusd" id="okcoinusd" class="checkbox"></td>
+												<td><label for="okcoinusd"><img src="./img/okcoinusd.jpg" width="85" height="25" class="exchange_logo" alt="OKCoin USD"></label></td>
+												<td class="exchange"><label for="okcoinusd">OKCoin USD</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="bit2c" id="bit2c" class="checkbox"></td>
+												<td><label for="bit2c"><img src="./img/bit2c.jpg" width="85" height="25" class="exchange_logo" alt="Bit2C"></label></td>
+												<td class="exchange"><label for="bit2c">Bit2C</label></td>
+												<td><input type=checkbox value="btcturk" id="btcturk" class="checkbox"></td>
+												<td><label for="btcturk"><img src="./img/btcturk.jpg" width="85" height="25" class="exchange_logo" alt="BTCTurk"></label></td>
+												<td class="exchange"><label for="btcturk">BTCTurk</label></td>
+												<td><input type=checkbox value="gemini" id="gemini" class="checkbox"></td>
+												<td><label for="gemini"><img src="./img/gemini.jpg" width="85" height="25" class="exchange_logo" alt="Gemini"></label></td>
+												<td class="exchange"><label for="gemini">Gemini</label></td>
+												<td><input type=checkbox value="okex" id="okex" class="checkbox"></td>
+												<td><label for="okex"><img src="./img/okex.jpg" width="85" height="25" class="exchange_logo" alt="OKEX"></label></td>
+												<td class="exchange"><label for="okex">OKEX</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="bitbay" id="bitbay" class="checkbox"></td>
+												<td><label for="bitbay"><img src="./img/bitbay.jpg" width="85" height="25" class="exchange_logo" alt="BitBay"></label></td>
+												<td class="exchange"><label for="bitbay">BitBay</label></td>
+												<td><input type=checkbox value="btcx" id="btcx" class="checkbox"></td>
+												<td><label for="btcx"><img src="./img/btcx.jpg" width="85" height="25" class="exchange_logo" alt="BTCX"></label></td>
+												<td class="exchange"><label for="btcx">BTCX</label></td>
+												<td><input type=checkbox value="getbtc" id="getbtc" class="checkbox"></td>
+												<td><label for="getbtc"><img src="./img/getbtc.jpg" width="85" height="25" class="exchange_logo" alt="GetBTC"></label></td>
+												<td class="exchange"><label for="getbtc">GetBTC</label></td>
+												<td><input type=checkbox value="poloniex" id="poloniex" class="checkbox"></td>
+												<td><label for="poloniex"><img src="./img/poloniex.jpg" width="85" height="25" class="exchange_logo" alt="Poloniex"></label></td>
+												<td class="exchange"><label for="poloniex">Poloniex</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="bitcoincoid" id="bitcoincoid" class="checkbox"></td>
+												<td><label for="bitcoincoid"><img src="./img/bitcoincoid.jpg" width="85" height="25" class="exchange_logo" alt="Bitcoin.co.id"></label></td>
+												<td class="exchange"><label for="bitcoincoid">Bitcoin.co.id</label></td>
+												<td><input type=checkbox value="bxinth" id="bxinth" class="checkbox"></td>
+												<td><label for="bxinth"><img src="./img/bxinth.jpg" width="85" height="25" class="exchange_logo" alt="BX.in.th"></label></td>
+												<td class="exchange"><label for="bxinth">BX.in.th</label></td>
+												<td><input type=checkbox value="hitbtc" id="hitbtc" class="checkbox"></td>
+												<td><label for="hitbtc2"><img src="./img/hitbtc.jpg" width="85" height="25" class="exchange_logo" alt="HitBTC"></label></td>
+												<td class="exchange"><label for="hitbtc2">HitBTC</label></td>
+												<td><input type=checkbox value="qryptos" id="qryptos" class="checkbox"></td>
+												<td><label for="qryptos"><img src="./img/qryptos.jpg" width="85" height="25" class="exchange_logo" alt="QRYPTOS"></label></td>
+												<td class="exchange"><label for="qryptos">QRYPTOS</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="bitfinex2" id="bitfinex2" class="checkbox"></td>
+												<td><label for="bitfinex2"><img src="./img/bitfinex2.jpg" width="85" height="25" class="exchange_logo" alt="Bitfinex"></label></td>
+												<td class="exchange"><label for="bitfinex2">Bitfinex</label></td>
+												<td><input type=checkbox value="ccex" id="ccex" class="checkbox"></td>
+												<td><label for="ccex"><img src="./img/ccex.jpg" width="85" height="25" class="exchange_logo" alt="C-CEX"></label></td>
+												<td class="exchange"><label for="ccex">C-CEX</label></td>
+												<td><input type=checkbox value="huobi" id="huobi" class="checkbox"></td>
+												<td><label for="huobi"><img src="./img/huobi.jpg" width="85" height="25" class="exchange_logo" alt="Huobi"></label></td>
+												<td class="exchange"><label for="huobi">Huobi</label></td>
+												<td><input type=checkbox value="quadrigacx" id="quadrigacx" class="checkbox"></td>
+												<td><label for="quadrigacx"><img src="./img/quadrigacx.jpg" width="85" height="25" class="exchange_logo" alt="QuadrigaCX"></label></td>
+												<td class="exchange"><label for="quadrigacx">QuadrigaCX</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="bitflyer" id="bitflyer" class="checkbox"></td>
+												<td><label for="bitflyer"><img src="./img/bitflyer.jpg" width="85" height="25" class="exchange_logo" alt="bitFlyer"></label></td>
+												<td class="exchange"><label for="bitflyer">bitFlyer</label></td>
+												<td><input type=checkbox value="cex" id="cex" class="checkbox"></td>
+												<td><label for="cex"><img src="./img/cex.jpg" width="85" height="25" class="exchange_logo" alt="CEX.IO"></label></td>
+												<td class="exchange"><label for="cex">CEX.IO</label></td>
+												<td><input type=checkbox value="huobipro" id="huobipro" class="checkbox"></td>
+												<td><label for="huobipro"><img src="./img/huobipro.jpg" width="85" height="25" class="exchange_logo" alt="Huobi Pro"></label></td>
+												<td class="exchange"><label for="huobipro">Huobi Pro</label></td>
+												<td><input type=checkbox value="quoinex" id="quoinex" class="checkbox"></td>
+												<td><label for="quoinex"><img src="./img/quoinex.jpg" width="85" height="25" class="exchange_logo" alt="QUOINEX"></label></td>
+												<td class="exchange"><label for="quoinex">QUOINEX</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="bithumb" id="bithumb" class="checkbox"></td>
+												<td><label for="bithumb"><img src="./img/bithumb.jpg" width="85" height="25" class="exchange_logo" alt="Bithumb"></label></td>
+												<td class="exchange"><label for="bithumb">Bithumb</label></td>
+												<td><input type=checkbox value="chbtc" id="chbtc" class="checkbox"></td>
+												<td><label for="chbtc"><img src="./img/chbtc.jpg" width="85" height="25" class="exchange_logo" alt="CHBTC"></label></td>
+												<td class="exchange"><label for="chbtc">CHBTC</label></td>
+												<td><input type=checkbox value="independentreserve" id="independentreserve" class="checkbox"></td>
+												<td><label for="independentreserve"><img src="./img/independentreserve.jpg" width="85" height="25" class="exchange_logo" alt="Independent Reserve"></label></td>
+												<td class="exchange"><label for="independentreserve">Independent Reserve</label></td>
+												<td><input type=checkbox value="southxchange" id="southxchange" class="checkbox"></td>
+												<td><label for="southxchange"><img src="./img/southxchange.jpg" width="85" height="25" class="exchange_logo" alt="SouthXchange"></label></td>
+												<td class="exchange"><label for="southxchange">SouthXchange</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="bitlish" id="bitlish" class="checkbox"></td>
+												<td><label for="bitlish"><img src="./img/bitlish.jpg" width="85" height="25" class="exchange_logo" alt="Bitlish"></label></td>
+												<td class="exchange"><label for="bitlish">Bitlish</label></td>
+												<td><input type=checkbox value="chilebit" id="chilebit" class="checkbox"></td>
+												<td><label for="chilebit"><img src="./img/chilebit.jpg" width="85" height="25" class="exchange_logo" alt="ChileBit"></label></td>
+												<td class="exchange"><label for="chilebit">ChileBit</label></td>
+												<td><input type=checkbox value="itbit" id="itbit" class="checkbox"></td>
+												<td><label for="itbit"><img src="./img/itbit.jpg" width="85" height="25" class="exchange_logo" alt="itBit"></label></td>
+												<td class="exchange"><label for="itbit">itBit</label></td>
+												<td><input type=checkbox value="surbitcoin" id="surbitcoin" class="checkbox"></td>
+												<td><label for="surbitcoin"><img src="./img/surbitcoin.jpg" width="85" height="25" class="exchange_logo" alt="SurBitcoin"></label></td>
+												<td class="exchange"><label for="surbitcoin">SurBitcoin</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="bitmarket" id="bitmarket" class="checkbox"></td>
+												<td><label for="bitmarket"><img src="./img/bitmarket.jpg" width="85" height="25" class="exchange_logo" alt="BitMarket"></label></td>
+												<td class="exchange"><label for="bitmarket">BitMarket</label></td>
+												<td><input type=checkbox value="cobinhood" id="cobinhood" class="checkbox"></td>
+												<td><label for="cobinhood"><img src="./img/cobinhood.jpg" width="85" height="25" class="exchange_logo" alt="COBINHOOD"></label></td>
+												<td class="exchange"><label for="cobinhood">COBINHOOD</label></td>
+												<td><input type=checkbox value="kraken" id="kraken" class="checkbox"></td>
+												<td><label for="kraken"><img src="./img/kraken.jpg" width="85" height="25" class="exchange_logo" alt="Kraken"></label></td>
+												<td class="exchange"><label for="kraken">Kraken</label></td>
+												<td><input type=checkbox value="therock" id="therock" class="checkbox"></td>
+												<td><label for="therock"><img src="./img/therock.jpg" width="85" height="25" class="exchange_logo" alt="TheRockTrading"></label></td>
+												<td class="exchange"><label for="therock">TheRockTrading</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="bitmex" id="bitmex" class="checkbox"></td>
+												<td><label for="bitmex"><img src="./img/bitmex.jpg" width="85" height="25" class="exchange_logo" alt="BitMEX"></label></td>
+												<td class="exchange"><label for="bitmex">BitMEX</label></td>
+												<td><input type=checkbox value="coinexchange" id="coinexchange" class="checkbox"></td>
+												<td><label for="coinexchange"><img src="./img/coinexchange.jpg" width="85" height="25" class="exchange_logo" alt="CoinExchange"></label></td>
+												<td class="exchange"><label for="coinexchange">CoinExchange</label></td>
+												<td><input type=checkbox value="kucoin" id="kucoin" class="checkbox"></td>
+												<td><label for="kucoin"><img src="./img/kucoin.jpg" width="85" height="25" class="exchange_logo" alt="Kucoin"></label></td>
+												<td class="exchange"><label for="kucoin">Kucoin</label></td>
+												<td><input type=checkbox value="tidex" id="tidex" class="checkbox"></td>
+												<td><label for="tidex"><img src="./img/tidex.jpg" width="85" height="25" class="exchange_logo" alt="Tidex"></label></td>
+												<td class="exchange"><label for="tidex">Tidex</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="bitso" id="bitso" class="checkbox"></td>
+												<td><label for="bitso"><img src="./img/bitso.jpg" width="85" height="25" class="exchange_logo" alt="Bitso"></label></td>
+												<td class="exchange"><label for="bitso">Bitso</label></td>
+												<td><input type=checkbox value="coinfloor" id="coinfloor" class="checkbox"></td>
+												<td><label for="coinfloor"><img src="./img/coinfloor.jpg" width="85" height="25" class="exchange_logo" alt="coinfloor"></label></td>
+												<td class="exchange"><label for="coinfloor">coinfloor</label></td>
+												<td><input type=checkbox value="kuna" id="kuna" class="checkbox"></td>
+												<td><label for="kuna"><img src="./img/kuna.jpg" width="85" height="25" class="exchange_logo" alt="Kuna"></label></td>
+												<td class="exchange"><label for="kuna">Kuna</label></td>
+												<td><input type=checkbox value="urdubit" id="urdubit" class="checkbox"></td>
+												<td><label for="urdubit"><img src="./img/urdubit.jpg" width="85" height="25" class="exchange_logo" alt="UrduBit"></label></td>
+												<td class="exchange"><label for="urdubit">UrduBit</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="bitstamp" id="bitstamp" class="checkbox"></td>
+												<td><label for="bitstamp"><img src="./img/bitstamp.jpg" width="85" height="25" class="exchange_logo" alt="Bitstamp"></label></td>
+												<td class="exchange"><label for="bitstamp">Bitstamp</label></td>
+												<td><input type=checkbox value="coingi" id="coingi" class="checkbox"></td>
+												<td><label for="coingi"><img src="./img/coingi.jpg" width="85" height="25" class="exchange_logo" alt="Coingi"></label></td>
+												<td class="exchange"><label for="coingi">Coingi</label></td>
+												<td><input type=checkbox value="lakebtc" id="lakebtc" class="checkbox"></td>
+												<td><label for="lakebtc"><img src="./img/lakebtc.jpg" width="85" height="25" class="exchange_logo" alt="LakeBTC"></label></td>
+												<td class="exchange"><label for="lakebtc">LakeBTC</label></td>
+												<td><input type=checkbox value="vbtc" id="vbtc" class="checkbox"></td>
+												<td><label for="vbtc"><img src="./img/vbtc.jpg" width="85" height="25" class="exchange_logo" alt="VBTC"></label></td>
+												<td class="exchange"><label for="vbtc">VBTC</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="bittrex" id="bittrex" class="checkbox"></td>
+												<td><label for="bittrex"><img src="./img/bittrex.jpg" width="85" height="25" class="exchange_logo" alt="Bittrex"></label></td>
+												<td class="exchange"><label for="bittrex">Bittrex</label></td>
+												<td><input type=checkbox value="coinmate" id="coinmate" class="checkbox"></td>
+												<td><label for="coinmate"><img src="./img/coinmate.jpg" width="85" height="25" class="exchange_logo" alt="CoinMate"></label></td>
+												<td class="exchange"><label for="coinmate">CoinMate</label></td>
+												<td><input type=checkbox value="liqui" id="liqui" class="checkbox"></td>
+												<td><label for="liqui"><img src="./img/liqui.jpg" width="85" height="25" class="exchange_logo" alt="Liqui"></label></td>
+												<td class="exchange"><label for="liqui">Liqui</label></td>
+												<td><input type=checkbox value="virwox" id="virwox" class="checkbox"></td>
+												<td><label for="virwox"><img src="./img/virwox.jpg" width="85" height="25" class="exchange_logo" alt="VirWoX"></label></td>
+												<td class="exchange"><label for="virwox">VirWoX</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="bitz" id="bitz" class="checkbox"></td>
+												<td><label for="bitz"><img src="./img/bitz.jpg" width="85" height="25" class="exchange_logo" alt="Bit-Z"></label></td>
+												<td class="exchange"><label for="bitz">Bit-Z</label></td>
+												<td><input type=checkbox value="cryptopia" id="cryptopia" class="checkbox"></td>
+												<td><label for="cryptopia"><img src="./img/cryptopia.jpg" width="85" height="25" class="exchange_logo" alt="Cryptopia"></label></td>
+												<td class="exchange"><label for="cryptopia">Cryptopia</label></td>
+												<td><input type=checkbox value="livecoin" id="livecoin" class="checkbox"></td>
+												<td><label for="livecoin"><img src="./img/livecoin.jpg" width="85" height="25" class="exchange_logo" alt="LiveCoin"></label></td>
+												<td class="exchange"><label for="livecoin">LiveCoin</label></td>
+												<td><input type=checkbox value="wex" id="wex" class="checkbox"></td>
+												<td><label for="wex"><img src="./img/wex.jpg" width="85" height="25" class="exchange_logo" alt="WEX"></label></td>
+												<td class="exchange"><label for="wex">WEX</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="bl3p" id="bl3p" class="checkbox"></td>
+												<td><label for="bl3p"><img src="./img/bl3p.jpg" width="85" height="25" class="exchange_logo" alt="BL3P"></label></td>
+												<td class="exchange"><label for="bl3p">BL3P</label></td>
+												<td><input type=checkbox value="dsx" id="dsx" class="checkbox"></td>
+												<td><label for="dsx"><img src="./img/dsx.jpg" width="85" height="25" class="exchange_logo" alt="DSX"></label></td>
+												<td class="exchange"><label for="dsx">DSX</label></td>
+												<td><input type=checkbox value="luno" id="luno" class="checkbox"></td>
+												<td><label for="luno"><img src="./img/luno.jpg" width="85" height="25" class="exchange_logo" alt="Luno"></label></td>
+												<td class="exchange"><label for="luno">Luno</label></td>
+												<td><input type=checkbox value="yobit" id="yobit" class="checkbox"></td>
+												<td><label for="yobit"><img src="./img/yobit.jpg" width="85" height="25" class="exchange_logo" alt="YoBit"></label></td>
+												<td class="exchange"><label for="yobit">YoBit</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="bleutrade" id="bleutrade" class="checkbox"></td>
+												<td><label for="bleutrade"><img src="./img/bleutrade.jpg" width="85" height="25" class="exchange_logo" alt="Bleutrade"></label></td>
+												<td class="exchange"><label for="bleutrade">Bleutrade</label></td>
+												<td><input type=checkbox value="exmo" id="exmo" class="checkbox"></td>
+												<td><label for="exmo"><img src="./img/exmo.jpg" width="85" height="25" class="exchange_logo" alt="EXMO"></label></td>
+												<td class="exchange"><label for="exmo">EXMO</label></td>
+												<td><input type=checkbox value="lykke" id="lykke" class="checkbox"></td>
+												<td><label for="lykke"><img src="./img/lykke.jpg" width="85" height="25" class="exchange_logo" alt="Lykke"></label></td>
+												<td class="exchange"><label for="lykke">Lykke</label></td>
+												<td><input type=checkbox value="zaif" id="zaif" class="checkbox"></td>
+												<td><label for="zaif"><img src="./img/zaif.jpg" width="85" height="25" class="exchange_logo" alt="Zaif"></label></td>
+												<td class="exchange"><label for="zaif">Zaif</label></td>
+										</tr>
+										<tr>
+												<td><input type=checkbox value="braziliex" id="braziliex" class="checkbox"></td>
+												<td><label for="braziliex"><img src="./img/braziliex.jpg" width="85" height="25" class="exchange_logo" alt="Braziliex"></label></td>
+												<td class="exchange"><label for="braziliex">Braziliex</label></td>
+												<td><input type=checkbox value="foxbit" id="foxbit" class="checkbox"></td>
+												<td><label for="foxbit"><img src="./img/foxbit.jpg" width="85" height="25" class="exchange_logo" alt="FoxBit"></label></td>
+												<td class="exchange"><label for="foxbit">FoxBit</label></td>
+												<td><input type=checkbox value="mercado" id="mercado" class="checkbox"></td>
+												<td><label for="mercado"><img src="./img/mercado.jpg" width="85" height="25" class="exchange_logo" alt="Mercado Bitcoin"></label></td>
+												<td class="exchange"><label for="mercado">Mercado Bitcoin</label></td>
+												<td><input type=checkbox value="zb" id="zb" class="checkbox"></td>
+												<td><label for="zb"><img src="./img/zb.jpg" width="85" height="25" class="exchange_logo" alt="ZB"></label></td>
+												<td class="exchange"><label for="zb">ZB</label></td>
+										</tr>
+                </table>
+            </div>
+        </div>
+        <div id="logs" class="d-none">
+            <p class="col-10 info d-none row">
+            </p>
+            <p class="col-10 errors row d-none">
+            </p>
+        </div>
+		<div id="sybolsTableContainer">
+
+		</div>
+    </div>
+</div>
+<script src="./js/main.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
