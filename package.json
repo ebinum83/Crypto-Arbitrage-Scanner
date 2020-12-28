@@ -3,8 +3,6 @@
   "version": "1.0.0",
   "private": false,
   "main": "app.js",
-  "author": "ebinum83",
-  "license": "MIT",
   "scripts": {
     "start": "node app.js"
   },
@@ -21,9 +19,10 @@
     "serve-favicon": "~2.4.5",
     "ws": "^4.1.0"
   },
-  "devDependencies": {
-    "eslint": "^4.16.0"
-  },
+  "devDependencies": {},
   "engines": {
     "node": "14.15.1"
   },
+  "author": "ebinum83",
+  "license": "MIT"
+}
