@@ -63,6 +63,6 @@ wss.on("connection", (ws) => {
 });
 
 
-app.listen(PORT, ()=> {
-    ("http://localhost:"+PORT);
+app.listen(PORT, () => {
+    ("http://localhost:" + PORT);
 });
