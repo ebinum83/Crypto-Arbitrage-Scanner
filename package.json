@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": false,
   "main": "app.js",
-  "author": "GRTTX",
+  "author": "ebinum83",
   "license": "MIT",
   "scripts": {
     "start": "node app.js"
@@ -20,9 +20,6 @@
     "opn": "^5.2.0",
     "serve-favicon": "~2.4.5",
     "ws": "^4.1.0"
-  },
-  "engines": {
-    "node": "14.15.1"
   },
   "devDependencies": {
     "eslint": "^4.16.0"
