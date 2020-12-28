@@ -6,8 +6,8 @@ const WebSocket = require('ws');
 const opn = require("opn");
 require('ansicolor').nice;
 
-const PORT = 3002;
-const WSS_PORT = 3005;
+const PORT = 8080;
+const WSS_PORT = 8081;
 
 let cryptFunctions = require('./cryptFunctions');
 
