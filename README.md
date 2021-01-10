@@ -7,10 +7,10 @@ Then print the profit forecast for the arbitrage trades.
 This bot does not place real trades, no API-KEY is needed.
 
 ## Install Dependencies.
-npm install
+yarn install
 
 ## Run Script
-npm start
+yarn start
 
 ## Open Browser
 Navigate to 127.0.0.1.:3002
