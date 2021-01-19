@@ -1,16 +1,44 @@
-# Crypto-Arbitrage-Scanner
+<h1 align="center">Welcome to Crypto-Arbitrage-Scanner 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+  <a href="https://twitter.com/ebinum1983" target="_blank">
+    <img alt="Twitter: ebinum1983" src="https://img.shields.io/twitter/follow/ebinum1983.svg?style=social" />
+  </a>
+</p>
 
-This bot will Scan between 2 - 4 crypto exchanges using CCXT, to determine wether there is 
-any possible arbitrage trades between 2 exchanges. 
-Then print the profit forecast for the arbitrage trades.
+> Crypto Arbitrage Scanner for scanning various exchanges for arbitrage opportunities.
 
-This bot does not place real trades, no API-KEY is needed.
+### 🏠 [Homepage](http://github.com/ebinum83/Crypto-Arbitrage-Scanner)
 
-## Install Dependencies.
+## Install
+
+```sh
 yarn install
+```
 
-## Run Script
-yarn start
+## Usage
 
-## Open Browser
-Navigate to 127.0.0.1.:3002
+```sh
+yarn run start
+```
+
+## Author
+
+👤 **ebinum83**
+
+* Twitter: [@ebinum1983](https://twitter.com/ebinum1983)
+* Github: [@ebinum83](https://github.com/ebinum83)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](http://github.com/ebinum83/Crypto-Arbitrage-Scanner/issues). 
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
